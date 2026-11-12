@@ -1,0 +1,197 @@
+{
+  "corpus_name": "Northstar Policy Knowledge Assistant — Source Corpus",
+  "corpus_version": "1.0",
+  "created": "2026-11-12",
+  "documents": [
+    {
+      "doc_id": "POL-LEARN-CURR-2026",
+      "filename": "policy_01_learning_leave_current.md",
+      "title": "Learning Leave Policy — Current",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "learning_leave",
+      "passage_ids": [
+        "LEARN-CURR-P1",
+        "LEARN-CURR-P2",
+        "LEARN-CURR-P3",
+        "LEARN-CURR-P4",
+        "LEARN-CURR-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-LEARN-ARCH-2025",
+      "filename": "policy_02_learning_leave_archived.md",
+      "title": "Learning Leave Policy — Archived (2025)",
+      "version": "1.0",
+      "status": "archived",
+      "effective_start": "2025-01-01",
+      "effective_end": "2025-12-31",
+      "scope": "all_departments",
+      "department": null,
+      "topic": "learning_leave",
+      "passage_ids": [
+        "LEARN-ARCH-P1",
+        "LEARN-ARCH-P2",
+        "LEARN-ARCH-P3",
+        "LEARN-ARCH-P4"
+      ]
+    },
+    {
+      "doc_id": "POL-TRAVEL-CURR-2026",
+      "filename": "policy_03_travel_expenses_current.md",
+      "title": "Travel and Expense Reimbursement Policy — Current",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "travel_expenses",
+      "passage_ids": [
+        "TRAVEL-CURR-P1",
+        "TRAVEL-CURR-P2",
+        "TRAVEL-CURR-P3",
+        "TRAVEL-CURR-P4",
+        "TRAVEL-CURR-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-TRAVEL-FAQ-2026",
+      "filename": "policy_04_travel_expenses_faq.md",
+      "title": "Travel Expense Reimbursement — Frequently Asked Questions",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "travel_expenses",
+      "authority_level": "faq",
+      "passage_ids": [
+        "TRAVEL-FAQ-P1",
+        "TRAVEL-FAQ-P2",
+        "TRAVEL-FAQ-P3",
+        "TRAVEL-FAQ-P4",
+        "TRAVEL-FAQ-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-REMOTE-CURR-2026",
+      "filename": "policy_05_remote_work_general.md",
+      "title": "Remote Work Policy — Current (General)",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "remote_work",
+      "passage_ids": [
+        "REMOTE-CURR-P1",
+        "REMOTE-CURR-P2",
+        "REMOTE-CURR-P3",
+        "REMOTE-CURR-P4",
+        "REMOTE-CURR-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-EQUIP-CURR-2026",
+      "filename": "policy_06_equipment_policy.md",
+      "title": "Equipment Policy — Current",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "equipment",
+      "passage_ids": [
+        "EQUIP-CURR-P1",
+        "EQUIP-CURR-P2",
+        "EQUIP-CURR-P3",
+        "EQUIP-CURR-P4",
+        "EQUIP-CURR-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-ONBOARD-CURR-2026",
+      "filename": "policy_07_onboarding_training.md",
+      "title": "Onboarding Policy — Current",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "onboarding",
+      "passage_ids": [
+        "ONBOARD-CURR-P1",
+        "ONBOARD-CURR-P2",
+        "ONBOARD-CURR-P3",
+        "ONBOARD-CURR-P4",
+        "ONBOARD-CURR-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-AUTH-REG-2026",
+      "filename": "policy_08_authority_register.md",
+      "title": "Policy Authority Register",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-01-01",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "authority",
+      "passage_ids": [
+        "AUTH-REG-P1",
+        "AUTH-REG-P2",
+        "AUTH-REG-P3",
+        "AUTH-REG-P4",
+        "AUTH-REG-P5"
+      ]
+    },
+    {
+      "doc_id": "POL-REMOTE-SOPEX-2026",
+      "filename": "policy_09_remote_work_support_ops_exception.md",
+      "title": "Remote Work Policy — Support Operations Department Exception",
+      "version": "1.0",
+      "status": "current",
+      "effective_start": "2026-03-01",
+      "effective_end": null,
+      "scope": "department_exception",
+      "department": "Support Operations",
+      "topic": "remote_work",
+      "passage_ids": [
+        "REMOTE-SOPEX-P1",
+        "REMOTE-SOPEX-P2",
+        "REMOTE-SOPEX-P3",
+        "REMOTE-SOPEX-P4",
+        "REMOTE-SOPEX-P5"
+      ]
+    },
+    {
+      "doc_id": "INFO-WEBINAR-2026-03",
+      "filename": "policy_10_webinar_announcement_distractor.md",
+      "title": "Internal Webinar Announcement — Agile Retrospectives (Distractor)",
+      "version": "1.0",
+      "status": "informational",
+      "effective_start": "2026-03-03",
+      "effective_end": null,
+      "scope": "all_departments",
+      "department": null,
+      "topic": "distractor",
+      "authority_level": "informational_only",
+      "passage_ids": [
+        "DISTRACT-P1",
+        "DISTRACT-P2",
+        "DISTRACT-P3",
+        "DISTRACT-P4"
+      ]
+    }
+  ]
+}
