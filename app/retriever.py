@@ -74,14 +74,29 @@ class BM25Retriever:
         query_tokens = _tokenize(query)
         scores = self._bm25.get_scores(query_tokens)
 
-        # Score + index pairs, sorted descending
-        ranked: List[Tuple[float, int]] = sorted(
-            enumerate(scores), key=lambda x: x[1], reverse=True
-        )
-
         if release == "candidate":
+            # Candidate improvement: phrase-level matching boost
+            # Boosts multi-token terms (e.g. 'learning leave', 'remote work', 'meal reimbursement')
+            # to prevent rare unigram keyword fragmentation (e.g. 'months' in equipment policy).
+            boosted_scores = []
+            for p, s in zip(self._passages, scores):
+                boost = 0.0
+                p_lower = p.text.lower()
+                for i in range(len(query_tokens) - 1):
+                    bg = f"{query_tokens[i]} {query_tokens[i+1]}"
+                    if len(bg) > 5 and bg in p_lower:
+                        boost += 3.0
+                boosted_scores.append(s + boost)
+
+            ranked: List[Tuple[float, int]] = sorted(
+                enumerate(boosted_scores), key=lambda x: x[1], reverse=True
+            )
             return self._authority_filtered(ranked, top_k, as_of, department)
         else:
+            # Score + index pairs, sorted descending
+            ranked: List[Tuple[float, int]] = sorted(
+                enumerate(scores), key=lambda x: x[1], reverse=True
+            )
             # Baseline: return top-k without filtering, with explicit rank and score
             results = []
             for rank_idx, (idx, score) in enumerate(ranked):

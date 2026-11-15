@@ -95,6 +95,7 @@ async def ask(req: AskRequest) -> AskResponse:
         retrieved_passages=retrieved,
         department=req.department,
         as_of=req.as_of,
+        release=req.release,
     )
 
     # Step 3: Extract inline [ID] citations from answer text
