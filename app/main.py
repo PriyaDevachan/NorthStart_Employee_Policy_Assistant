@@ -126,6 +126,8 @@ async def ask(req: AskRequest) -> AskResponse:
     # Step 6: Build response passages (never include API key)
     response_passages = [
         RetrievedPassage(
+            rank=p.rank,
+            score=p.score,
             passage_id=p.passage_id,
             doc_id=p.doc_id,
             title=p.title,

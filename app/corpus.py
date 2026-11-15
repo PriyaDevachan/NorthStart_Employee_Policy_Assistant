@@ -25,6 +25,8 @@ class Passage:
     department: Optional[str]
     topic: str
     authority_level: Optional[str]  # None | faq | informational_only
+    rank: Optional[int] = None
+    score: Optional[float] = None
 
 
 @dataclass

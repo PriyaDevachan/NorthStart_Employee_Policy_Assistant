@@ -52,12 +52,14 @@ def log_trace(
         "retrieved_passage_ids": [p.passage_id for p in retrieved_passages],
         "retrieved_passages": [
             {
+                "rank": p.rank if p.rank is not None else (i + 1),
+                "score": p.score,
                 "passage_id": p.passage_id,
                 "doc_id": p.doc_id,
                 "status": p.status,
                 "text_preview": p.text[:200],
             }
-            for p in retrieved_passages
+            for i, p in enumerate(retrieved_passages)
         ],
         "decision": decision,
         "answer": answer,

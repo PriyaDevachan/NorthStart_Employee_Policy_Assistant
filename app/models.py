@@ -14,6 +14,8 @@ class AskRequest(BaseModel):
 
 
 class RetrievedPassage(BaseModel):
+    rank: Optional[int] = Field(None, description="1-based retrieval rank")
+    score: Optional[float] = Field(None, description="BM25 retrieval score")
     passage_id: str
     doc_id: str
     title: str

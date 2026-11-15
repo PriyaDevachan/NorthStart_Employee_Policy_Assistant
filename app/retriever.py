@@ -12,6 +12,7 @@ The critical date logic (RAG-ISSUE-002):
 """
 from __future__ import annotations
 import re
+from dataclasses import replace
 from datetime import date, datetime
 from typing import List, Optional, Tuple
 
@@ -81,12 +82,13 @@ class BM25Retriever:
         if release == "candidate":
             return self._authority_filtered(ranked, top_k, as_of, department)
         else:
-            # Baseline: return top-k without filtering
+            # Baseline: return top-k without filtering, with explicit rank and score
             results = []
-            for idx, _score in ranked:
+            for rank_idx, (idx, score) in enumerate(ranked):
                 if len(results) >= top_k:
                     break
-                results.append(self._passages[idx])
+                p = self._passages[idx]
+                results.append(replace(p, rank=rank_idx + 1, score=round(float(score), 4)))
             return results
 
     def _authority_filtered(
@@ -106,6 +108,9 @@ class BM25Retriever:
         4. Exclude informational/distractor passages.
         """
         as_of_date = _parse_date(as_of)
+
+        # Map original BM25 scores by passage_id
+        score_map = {self._passages[idx].passage_id: round(float(score), 4) for idx, score in ranked}
 
         # Gather all passages in BM25 score order
         all_passages = [self._passages[idx] for idx, _score in ranked]
@@ -159,7 +164,17 @@ class BM25Retriever:
                 p for p in active if p not in other_passages
             ]
 
-        return active[:top_k]
+        # Return top_k with explicit rank and score
+        results = []
+        for rank_idx, p in enumerate(active[:top_k]):
+            results.append(
+                replace(
+                    p,
+                    rank=rank_idx + 1,
+                    score=score_map.get(p.passage_id, 0.0),
+                )
+            )
+        return results
 
 
 # Module-level retriever singleton
