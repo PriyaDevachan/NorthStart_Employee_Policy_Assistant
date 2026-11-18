@@ -566,40 +566,38 @@ export default function App() {
           </div>
         </div>
 
-        {/* TAB 1: ASK ASSISTANT CHAT VIEW (BYTE TOWN AI ASSISTANT LANDING STYLE) */}
+        {/* TAB 1: ASK ASSISTANT CHAT VIEW */}
         {activeTab === 'chat' && (
           <main className="workspace chat-workspace-dribbble">
-            {/* Dribbble Hero Showcase Section */}
+            {/* Compact Dribbble Hero Header */}
             <section className="dribbble-hero-section">
-              <div className="hero-pill-tag glow-hover">
-                <Sparkles size={13} className="text-violet" />
-                <span>Next-Gen Enterprise AI • Zero-Hallucination Policy Engine</span>
+              <div className="hero-header-left">
+                <div className="hero-pill-tag glow-hover">
+                  <Sparkles size={12} className="text-violet" />
+                  <span>Next-Gen Enterprise AI • Grounded RAG</span>
+                </div>
+                <h2 className="hero-compact-title">
+                  Instant Policy Intelligence, <span className="gradient-highlight">Verified to the Word</span>
+                </h2>
               </div>
-              <h1 className="hero-giant-title">
-                Instant Enterprise Policy Clarity, <br />
-                <span className="gradient-highlight">Verified to the Word.</span>
-              </h1>
-              <p className="hero-subheading">
-                Explore Northstar's 10 corporate policies across learning leave, remote work, equipment, and travel expenses with temporal precision, departmental scope, and 100% server-verified citation grounding.
-              </p>
 
               {/* Floating Stat Badges Row */}
               <div className="hero-stat-badges-row">
-                <div className="hero-stat-badge">
+                <div className="hero-stat-badge" title="100% Server Verified Grounded Citations">
                   <span className="beacon-dot beacon-green pulse-glow"></span>
-                  <span className="stat-badge-text"><strong>100% Grounded Citations</strong> (Server Verified)</span>
+                  <span className="stat-badge-text"><strong>100% Grounded</strong></span>
                 </div>
-                <div className="hero-stat-badge">
-                  <Zap size={13} className="text-amber" />
-                  <span className="stat-badge-text"><strong>Groq Llama-3 / GPT-OSS</strong> (~180ms)</span>
+                <div className="hero-stat-badge" title="Groq Ultra-Low Latency Inference">
+                  <Zap size={12} className="text-amber" />
+                  <span className="stat-badge-text"><strong>Groq</strong> ~180ms</span>
                 </div>
-                <div className="hero-stat-badge">
-                  <ShieldCheck size={13} className="text-blue" />
-                  <span className="stat-badge-text"><strong>100% Hit@5 Recall</strong> (Candidate)</span>
+                <div className="hero-stat-badge" title="100% Evidence Retrieval Recall in Candidate">
+                  <ShieldCheck size={12} className="text-blue" />
+                  <span className="stat-badge-text"><strong>Hit@5:</strong> 100%</span>
                 </div>
-                <div className="hero-stat-badge">
-                  <Clock size={13} className="text-purple" />
-                  <span className="stat-badge-text"><strong>Policy Horizon:</strong> {asOfDate}</span>
+                <div className="hero-stat-badge" title="Active Policy Horizon">
+                  <Clock size={12} className="text-purple" />
+                  <span className="stat-badge-text"><strong>Horizon:</strong> {asOfDate}</span>
                 </div>
               </div>
             </section>
