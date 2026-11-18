@@ -3,7 +3,7 @@ import {
   Send, Sparkles, Building2, Calendar, ShieldCheck, 
   ChevronDown, ChevronRight, Activity, BookOpen, AlertCircle,
   HelpCircle, CheckCircle2, RefreshCw, Code2, Layers,
-  ExternalLink, ArrowRight, Compass
+  ExternalLink, ArrowRight, Compass, Zap
 } from 'lucide-react';
 import AssistantAvatar3D from './AssistantAvatar3D';
 
@@ -151,7 +151,7 @@ export default function ChatAssistantView({
         <div className="sample-questions-header">
           <div className="sq-title-wrap">
             <Sparkles size={14} className="text-indigo" />
-            <span>Sample Questions</span>
+            <span>Sample Inquiries</span>
           </div>
           <span className="sq-badge">Click to Ask</span>
         </div>
@@ -176,29 +176,39 @@ export default function ChatAssistantView({
         </div>
       </aside>
 
-      {/* RIGHT / CENTER: Chat Area with "Ask Assistant" nearer to the Chat Window */}
+      {/* CENTERPIECE: Main Chatbot Command Center */}
       <div className="chat-main-column">
-        {/* Prominent "Ask Assistant" Hero Pill nearer to chat window (matching image) */}
+        {/* Prominent Centerpiece Header Bar */}
         <div className="chat-window-header-pill-row">
-          <div className="ask-assistant-hero-pill glow-3d">
-            <div className="hero-pill-icon-circle">
-              <Compass size={14} />
+          <div className="centerpiece-left-title">
+            <div className="ask-assistant-hero-pill glow-3d">
+              <div className="hero-pill-icon-circle">
+                <Compass size={15} />
+              </div>
+              <span>Ask Assistant</span>
             </div>
-            <span>Ask Assistant</span>
+            <span className="chat-window-subtitle">
+              Enterprise Policy Intelligence • Verified to the word
+            </span>
           </div>
-          <span className="chat-window-subtitle">Instant verified policy clarity • 100% server verified</span>
+
+          <div className="centerpiece-quick-scopes">
+            <span className="scope-micro-badge"><Building2 size={11} /> {department || 'All Departments'}</span>
+            <span className="scope-micro-badge"><Calendar size={11} /> {asOfDate}</span>
+          </div>
         </div>
 
-        {/* Central Chat Terminal */}
+        {/* Central Chat Terminal — Visual Centerpiece */}
         <div className={`central-chat-terminal glass-panel-3d ${is3DView ? 'element-3d-card' : ''}`}>
           {/* Terminal Header Chrome */}
           <div className="terminal-top-bar">
             <div className="terminal-left-group">
-              <AssistantAvatar3D is3DView={is3DView} loading={loading} size={38} />
+              <AssistantAvatar3D is3DView={is3DView} loading={loading} size={40} />
               <div className="terminal-assistant-info">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <span className="status-label">Northstar Policy AI</span>
                   <span className="beacon-dot beacon-green pulse-glow"></span>
+                  <span className="ready-text">Grounded & Active</span>
                 </div>
                 <span className="terminal-model-badge">Groq • gpt-oss-20b</span>
               </div>
@@ -215,13 +225,37 @@ export default function ChatAssistantView({
               </div>
               <div className="terminal-release-pill" title="RAG Mode">
                 <span className={`rel-dot ${release === 'candidate' ? 'rel-cand' : 'rel-base'}`}></span>
-                <span>{release.toUpperCase()}</span>
+                <span>{release.toUpperCase()} (Phrase Boosted)</span>
               </div>
             </div>
           </div>
 
           {/* Messages Stream */}
           <div className="messages-stream">
+            {/* Visual Centerpiece Hero Card (shown initially) */}
+            {messages.length === 1 && messages[0].trace_id === 'init' && (
+              <div className="chat-centerpiece-welcome glass-panel-3d anim-entrance">
+                <div className="welcome-avatar-spot">
+                  <AssistantAvatar3D is3DView={is3DView} loading={false} size={56} />
+                </div>
+                <h2 className="welcome-hero-title">Northstar Policy AI Center</h2>
+                <p className="welcome-hero-desc">
+                  Your verified digital guide to Northstar Services corporate policies. Get precise, instant answers on annual learning leave, hybrid/remote schedules, meal per diem expenses, equipment refresh, and security prerequisites.
+                </p>
+                <div className="welcome-badges-row">
+                  <span className="welcome-badge">
+                    <ShieldCheck size={13} className="text-emerald" /> 100% Server-Verified Citations
+                  </span>
+                  <span className="welcome-badge">
+                    <Zap size={13} className="text-amber" /> Groq High-Speed Inference
+                  </span>
+                  <span className="welcome-badge">
+                    <BookOpen size={13} className="text-indigo" /> 10 Active & Historical Policies
+                  </span>
+                </div>
+              </div>
+            )}
+
             {messages.map((msg, idx) => (
               <div 
                 key={idx} 
@@ -361,7 +395,7 @@ export default function ChatAssistantView({
                     <div className="typing-dot"></div>
                     <div className="typing-dot"></div>
                     <div className="typing-dot"></div>
-                    <span className="typing-text">Retrieving passages & verifying authority with Groq LLM...</span>
+                    <span className="typing-text">Retrieving grounding passages & generating verified response...</span>
                   </div>
                 </div>
               </div>
