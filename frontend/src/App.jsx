@@ -408,14 +408,6 @@ export default function App() {
           transform: `perspective(1400px) rotateX(${mouseTilt.x.toFixed(2)}deg) rotateY(${mouseTilt.y.toFixed(2)}deg)`
         } : {}}
       >
-        {/* Animated Marquee Ticker Tape */}
-        <div className="marquee-ribbon">
-          <div className="marquee-track">
-            <span>✦ NORTHSTAR SERVICES POLICY ASSISTANT ✦ 10 SYNTHETIC POLICIES ✦ 48 SEGMENTED PASSAGES ✦ 100% GROUNDED CITATIONS ✦ BM25 RELEVANCE RANKING ✦ GROQ OPENAI/GPT-OSS-20B ✦ ZERO HALLUCINATION GUARANTEE ✦</span>
-            <span>✦ NORTHSTAR SERVICES POLICY ASSISTANT ✦ 10 SYNTHETIC POLICIES ✦ 48 SEGMENTED PASSAGES ✦ 100% GROUNDED CITATIONS ✦ BM25 RELEVANCE RANKING ✦ GROQ OPENAI/GPT-OSS-20B ✦ ZERO HALLUCINATION GUARANTEE ✦</span>
-          </div>
-        </div>
-
         {/* Header with Navigation Tabs */}
         <header className="app-header depth-level-1">
           <div className="header-brand">
@@ -566,52 +558,19 @@ export default function App() {
           </div>
         </div>
 
-        {/* TAB 1: ASK ASSISTANT CHAT VIEW */}
+        {/* TAB 1: ASK ASSISTANT CHAT VIEW (CENTERED CLEAN LAYOUT) */}
         {activeTab === 'chat' && (
-          <main className="workspace chat-workspace-dribbble">
-            {/* Compact Dribbble Hero Header */}
-            <section className="dribbble-hero-section">
-              <div className="hero-header-left">
-                <div className="hero-pill-tag glow-hover">
-                  <Sparkles size={12} className="text-violet" />
-                  <span>Next-Gen Enterprise AI • Grounded RAG</span>
-                </div>
-                <h2 className="hero-compact-title">
-                  Instant Policy Intelligence, <span className="gradient-highlight">Verified to the Word</span>
-                </h2>
-              </div>
-
-              {/* Floating Stat Badges Row */}
-              <div className="hero-stat-badges-row">
-                <div className="hero-stat-badge" title="100% Server Verified Grounded Citations">
-                  <span className="beacon-dot beacon-green pulse-glow"></span>
-                  <span className="stat-badge-text"><strong>100% Grounded</strong></span>
-                </div>
-                <div className="hero-stat-badge" title="Groq Ultra-Low Latency Inference">
-                  <Zap size={12} className="text-amber" />
-                  <span className="stat-badge-text"><strong>Groq</strong> ~180ms</span>
-                </div>
-                <div className="hero-stat-badge" title="100% Evidence Retrieval Recall in Candidate">
-                  <ShieldCheck size={12} className="text-blue" />
-                  <span className="stat-badge-text"><strong>Hit@5:</strong> 100%</span>
-                </div>
-                <div className="hero-stat-badge" title="Active Policy Horizon">
-                  <Clock size={12} className="text-purple" />
-                  <span className="stat-badge-text"><strong>Horizon:</strong> {asOfDate}</span>
-                </div>
-              </div>
-            </section>
-
-            {/* Central Floating AI Chatbot Window (ByteTown Luxury Glass Terminal) */}
-            <div className="dribbble-chat-terminal card-pop-3d">
+          <main className="workspace chat-workspace-centered">
+            {/* Centered Assistant Chatbox Terminal */}
+            <div className="central-chat-terminal card-pop-3d">
               {/* Terminal Top Window Chrome */}
               <div className="terminal-top-bar">
                 <div className="terminal-left-group">
                   <div className="terminal-status-indicator">
                     <span className="beacon-dot beacon-green pulse-glow"></span>
-                    <span className="status-label">Northstar Policy AI</span>
+                    <span className="status-label">Northstar Policy Assistant</span>
                   </div>
-                  <span className="terminal-model-badge">Groq / gpt-oss-20b</span>
+                  <span className="terminal-model-badge">Groq • gpt-oss-20b</span>
                 </div>
 
                 <div className="terminal-right-group">
