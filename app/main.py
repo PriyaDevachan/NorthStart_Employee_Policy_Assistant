@@ -62,6 +62,31 @@ async def health() -> HealthResponse:
     )
 
 
+@app.get("/api/policies")
+async def get_policies():
+    """Returns the full policy catalog and segmented passages."""
+    corpus = get_corpus()
+    return {
+        "documents": corpus.documents,
+        "passages": [
+            {
+                "passage_id": p.passage_id,
+                "doc_id": p.doc_id,
+                "title": p.title,
+                "text": p.text,
+                "status": p.status,
+                "effective_start": p.effective_start,
+                "effective_end": p.effective_end,
+                "department": p.department,
+                "scope": p.scope,
+                "topic": p.topic,
+                "authority_level": p.authority_level,
+            }
+            for p in corpus.passages.values()
+        ],
+    }
+
+
 @app.post("/api/ask", response_model=AskResponse)
 async def ask(req: AskRequest) -> AskResponse:
     """
