@@ -2077,23 +2077,23 @@ body {
   border-radius: 9999px;
 }
 
-/* Central Chat Terminal — Dominant Visual Centerpiece */
+/* Central Chat Terminal — Dominant Visual Centerpiece with Rich Dark Blue Background */
 .central-chat-terminal {
   width: 100%;
   max-width: 1050px;
   flex: 1;
   min-height: 0;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(180deg, #0b1528 0%, #080f1d 100%);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border: 1.5px solid rgba(191, 219, 254, 0.95);
+  border: 1.5px solid rgba(59, 130, 246, 0.45);
   border-radius: 26px;
   box-shadow: 
-    0 30px 80px -15px rgba(37, 99, 235, 0.18),
-    0 12px 35px -8px rgba(15, 23, 42, 0.05),
-    0 0 0 1px rgba(255, 255, 255, 0.8),
-    inset 0 1px 0 #ffffff;
+    0 30px 80px -15px rgba(2, 6, 23, 0.65),
+    0 12px 35px -8px rgba(15, 23, 42, 0.4),
+    0 0 35px rgba(37, 99, 235, 0.22),
+    inset 0 1px 0 rgba(147, 197, 253, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -2105,18 +2105,19 @@ body {
 
 .central-chat-terminal.element-3d-card {
   box-shadow: 
-    0 35px 90px -15px rgba(37, 99, 235, 0.22),
-    0 15px 40px -8px rgba(15, 23, 42, 0.07),
-    0 0 0 1px rgba(147, 197, 253, 0.6),
-    inset 0 1px 0 #ffffff;
+    0 35px 90px -15px rgba(2, 6, 23, 0.75),
+    0 15px 40px -8px rgba(15, 23, 42, 0.45),
+    0 0 45px rgba(37, 99, 235, 0.28),
+    inset 0 1px 0 rgba(147, 197, 253, 0.3);
 }
 
 .central-chat-terminal:hover {
-  border-color: rgba(59, 130, 246, 0.8);
+  border-color: rgba(96, 165, 250, 0.75);
   box-shadow: 
-    0 40px 100px -15px rgba(37, 99, 235, 0.26),
-    0 18px 45px -8px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 #ffffff;
+    0 40px 100px -15px rgba(2, 6, 23, 0.85),
+    0 18px 45px -8px rgba(15, 23, 42, 0.5),
+    0 0 55px rgba(37, 99, 235, 0.35),
+    inset 0 1px 0 rgba(147, 197, 253, 0.35);
 }
 
 /* Centerpiece Welcome Card in Stream */
@@ -2129,10 +2130,10 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.85rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 247, 255, 0.92) 100%);
-  border: 1.5px solid rgba(191, 219, 254, 0.85);
+  background: linear-gradient(180deg, rgba(16, 30, 60, 0.9) 0%, rgba(10, 20, 42, 0.95) 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
   border-radius: 20px;
-  box-shadow: 0 15px 40px -10px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 15px 40px -10px rgba(2, 6, 23, 0.5), 0 0 20px rgba(37, 99, 235, 0.15);
 }
 
 .welcome-avatar-spot {
@@ -2143,13 +2144,13 @@ body {
 .welcome-hero-title {
   font-size: 1.35rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #f8fafc;
   letter-spacing: -0.02em;
 }
 
 .welcome-hero-desc {
   font-size: 0.86rem;
-  color: #475569;
+  color: #cbd5e1;
   line-height: 1.55;
   max-width: 620px;
 }
@@ -2170,20 +2171,20 @@ body {
   border-radius: 9999px;
   font-size: 0.74rem;
   font-weight: 600;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: #334155;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .ready-text {
   font-size: 0.68rem;
-  color: #059669;
+  color: #34d399;
   font-weight: 700;
-  background: #ecfdf5;
+  background: rgba(6, 78, 59, 0.5);
   padding: 1px 6px;
   border-radius: 4px;
-  border: 1px solid #a7f3d0;
+  border: 1px solid rgba(52, 211, 153, 0.5);
 }
 
 /* Terminal Top Bar */
@@ -2192,9 +2193,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.5rem;
-  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  background: linear-gradient(180deg, rgba(15, 28, 54, 0.98) 0%, rgba(11, 21, 42, 0.98) 100%);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(2, 6, 23, 0.35);
   flex-shrink: 0;
 }
 
@@ -2213,19 +2214,19 @@ body {
 .status-label {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #f8fafc;
 }
 
 .terminal-model-badge {
   font-size: 0.7rem;
   font-family: monospace;
   font-weight: 600;
-  background: #eff6ff;
-  color: #2563eb;
+  background: rgba(30, 58, 138, 0.5);
+  color: #93c5fd;
   padding: 0.25rem 0.65rem;
   border-radius: 8px;
-  border: 1px solid #bfdbfe;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.08), inset 0 1px 0 #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .terminal-right-group {
@@ -2238,35 +2239,36 @@ body {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   padding: 0.28rem 0.7rem;
   border-radius: 9999px;
   font-size: 0.72rem;
-  color: #334155;
+  color: #cbd5e1;
   font-weight: 600;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04), inset 0 1px 0 #ffffff;
-  transition: transform 0.15s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .terminal-scope-pill:hover {
   transform: translateY(-1px);
-  border-color: #93c5fd;
+  border-color: #60a5fa;
+  color: #ffffff;
 }
 
 .terminal-release-pill {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: rgba(30, 58, 138, 0.45);
+  border: 1px solid rgba(59, 130, 246, 0.5);
   padding: 0.28rem 0.7rem;
   border-radius: 9999px;
   font-size: 0.7rem;
   font-weight: 800;
-  color: #1d4ed8;
+  color: #93c5fd;
   letter-spacing: 0.04em;
-  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.1), inset 0 1px 0 #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .rel-dot {
@@ -2274,8 +2276,8 @@ body {
   height: 6px;
   border-radius: 50%;
 }
-.rel-cand { background: #2563eb; box-shadow: 0 0 6px #2563eb; }
-.rel-base { background: #059669; box-shadow: 0 0 6px #059669; }
+.rel-cand { background: #3b82f6; box-shadow: 0 0 8px #3b82f6; }
+.rel-base { background: #10b981; box-shadow: 0 0 8px #10b981; }
 
 /* Status Beacon Dot with Pulse Glow */
 .beacon-dot {
@@ -2362,15 +2364,15 @@ body {
   color: #eab308;
 }
 
-/* Floating Input Dock (3D Tactile Element) */
+/* Floating Input Dock (3D Tactile Element) in Rich Dark Blue */
 .terminal-input-dock {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.5rem;
-  background: #ffffff;
-  border-top: 1px solid #e2e8f0;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.02);
+  background: linear-gradient(180deg, rgba(15, 28, 54, 0.98) 0%, rgba(10, 19, 38, 0.98) 100%);
+  border-top: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 -8px 25px rgba(2, 6, 23, 0.4);
   flex-shrink: 0;
   position: relative;
   z-index: 50;
@@ -2384,9 +2386,9 @@ body {
 }
 
 .dock-icon-btn {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  color: #64748b;
+  background: rgba(15, 28, 56, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #94a3b8;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -2396,15 +2398,15 @@ body {
   cursor: pointer !important;
   pointer-events: auto !important;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04), inset 0 1px 0 #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .dock-icon-btn:hover {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  color: #2563eb;
+  background: rgba(37, 99, 235, 0.3);
+  border-color: #60a5fa;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
 .dock-icon-btn:active {
@@ -2413,24 +2415,28 @@ body {
 
 .dock-input-field {
   flex: 1;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  background: rgba(9, 19, 38, 0.92);
+  border: 1px solid rgba(59, 130, 246, 0.38);
   border-radius: 9999px;
   padding: 0.8rem 1.35rem;
-  color: #0f172a;
+  color: #ffffff;
   font-size: 0.88rem;
   outline: none;
   transition: all 0.2s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
   pointer-events: auto !important;
   cursor: text !important;
   user-select: text !important;
 }
 
+.dock-input-field::placeholder {
+  color: #64748b;
+}
+
 .dock-input-field:focus {
-  border-color: #2563eb;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  border-color: #60a5fa;
+  background: rgba(12, 25, 52, 0.98);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .dock-send-btn {
@@ -2446,12 +2452,12 @@ body {
   cursor: pointer !important;
   pointer-events: auto !important;
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .dock-send-btn:hover:not(:disabled) {
   transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .dock-send-btn:active:not(:disabled) {
@@ -2463,6 +2469,125 @@ body {
   opacity: 0.4;
   cursor: not-allowed;
   transform: none;
+}
+
+/* Messages, Citations and Passages inside Dark Blue Central Chat Terminal */
+.central-chat-terminal .messages-stream {
+  background: transparent;
+}
+
+.central-chat-terminal .message-content {
+  background-color: rgba(15, 28, 56, 0.92);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #f1f5f9;
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.35);
+}
+
+.central-chat-terminal .message-row.user .message-content {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+}
+
+.central-chat-terminal .message-text-body {
+  color: #f1f5f9;
+}
+
+.central-chat-terminal .release-tag {
+  background-color: rgba(15, 23, 42, 0.75);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+
+.central-chat-terminal .citations-header {
+  color: #93c5fd;
+}
+
+.central-chat-terminal .citation-pill {
+  background: rgba(30, 58, 138, 0.45);
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  color: #93c5fd;
+}
+
+.central-chat-terminal .citation-pill:hover {
+  background: rgba(37, 99, 235, 0.6);
+  border-color: #60a5fa;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+}
+
+.central-chat-terminal .passage-card {
+  background: #091326;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.5);
+}
+
+.central-chat-terminal .passage-card-head {
+  border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+  color: #f8fafc;
+}
+
+.central-chat-terminal .passage-card-body {
+  color: #cbd5e1;
+}
+
+.central-chat-terminal .trace-accordion {
+  border-top: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.central-chat-terminal .trace-header {
+  color: #94a3b8;
+}
+
+.central-chat-terminal .trace-header:hover {
+  color: #93c5fd;
+}
+
+.central-chat-terminal .trace-body {
+  background: rgba(9, 19, 38, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.central-chat-terminal .trace-field-label {
+  color: #94a3b8;
+}
+
+.central-chat-terminal .trace-field-val {
+  color: #e2e8f0;
+}
+
+.central-chat-terminal .retrieved-tag-chip {
+  background: rgba(30, 58, 138, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+
+.central-chat-terminal .json-raw-block {
+  background: #050b16;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #a5f3fc;
+}
+
+.central-chat-terminal .btn-tiny {
+  background: rgba(30, 58, 138, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+
+.central-chat-terminal .typing-indicator-box {
+  background: rgba(16, 32, 64, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #94a3b8;
+}
+
+.central-chat-terminal .typing-text {
+  color: #94a3b8;
+}
+
+.central-chat-terminal .typing-dot {
+  background-color: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
 }
 
 
