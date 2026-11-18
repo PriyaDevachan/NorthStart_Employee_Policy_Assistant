@@ -401,13 +401,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Main 3D Wrapper Layer */}
-      <div 
-        className="spatial-canvas"
-        style={is3DView ? {
-          transform: `perspective(1400px) rotateX(${mouseTilt.x.toFixed(2)}deg) rotateY(${mouseTilt.y.toFixed(2)}deg)`
-        } : {}}
-      >
+      {/* Main Content Layer (Fixed Stable Canvas) */}
+      <div className="spatial-canvas">
         {/* Header with Navigation Tabs */}
         <header className="app-header depth-level-1">
           <div className="header-brand">
@@ -456,63 +451,24 @@ export default function App() {
               <span>3D Map</span>
             </button>
 
-            {/* 3D Spatial Toggle */}
+            {/* 3D Elements Toggle */}
             <button 
               className={`spatial-toggle-btn ${is3DView ? 'active' : ''}`}
               onClick={() => setIs3DView(!is3DView)}
-              title={is3DView ? "Switch to 2D Standard View" : "Switch to 3D Spatial View"}
+              title={is3DView ? "Disable 3D effects on elements" : "Enable 3D effects on elements"}
             >
               <Box size={14} />
-              <span>{is3DView ? '3D: ON' : '3D: OFF'}</span>
+              <span>{is3DView ? '3D Effects: ON' : '3D: OFF'}</span>
             </button>
           </div>
         </header>
 
-        {/* Global Controls & Policy Quarter Timeline Banner */}
+        {/* Global Controls & Scope Bar */}
         <div className="controls-bar depth-level-2">
-          {/* Interactive Timeline Calendar Blocks (Reference Design Style) */}
-          <div className="timeline-cards-row">
-            <div 
-              className={`timeline-quarter-card t-jan ${asOfDate === '2026-01-01' ? 'selected' : ''}`}
-              onClick={() => setAsOfDate('2026-01-01')}
-              title="Set Policy Date to 1 Jan 2026 (5-Day Learning Reset & General Remote)"
-            >
-              <div className="t-month">Jan 1</div>
-              <div className="t-desc">5-Day Leave Resets</div>
-            </div>
-
-            <div 
-              className={`timeline-quarter-card t-mar ${asOfDate === '2026-03-01' ? 'selected' : ''}`}
-              onClick={() => setAsOfDate('2026-03-01')}
-              title="Set Policy Date to 1 Mar 2026 (Support Ops 1-Day Exception Begins)"
-            >
-              <div className="t-month">Mar 1</div>
-              <div className="t-desc">Support Ops Exception</div>
-            </div>
-
-            <div 
-              className={`timeline-quarter-card t-apr ${asOfDate === '2026-04-15' ? 'selected' : ''}`}
-              onClick={() => setAsOfDate('2026-04-15')}
-              title="Set Policy Date to 15 Apr 2026 (Standard Benchmark Horizon)"
-            >
-              <div className="t-month">Apr 15</div>
-              <div className="t-desc">Benchmark Horizon</div>
-            </div>
-
-            <div 
-              className={`timeline-quarter-card t-dec ${asOfDate === '2025-12-31' ? 'selected' : ''}`}
-              onClick={() => setAsOfDate('2025-12-31')}
-              title="Set Policy Date to 31 Dec 2025 (2025 Leave Forfeiture Deadline)"
-            >
-              <div className="t-month">Dec 31</div>
-              <div className="t-desc">2025 Forfeiture Date</div>
-            </div>
-          </div>
-
           <div className="filter-controls-group">
             <div className="control-group">
               <Building2 size={15} className="text-muted" />
-              <span className="control-label">Dept:</span>
+              <span className="control-label">Department:</span>
               <select 
                 className="select-input" 
                 value={department} 
@@ -528,7 +484,7 @@ export default function App() {
 
             <div className="control-group">
               <Calendar size={15} className="text-muted" />
-              <span className="control-label">Date:</span>
+              <span className="control-label">Effective Date:</span>
               <input 
                 type="date" 
                 className="date-input" 
@@ -540,6 +496,7 @@ export default function App() {
 
             <div className="control-group">
               <ShieldCheck size={15} className="text-muted" />
+              <span className="control-label">RAG Mode:</span>
               <div className="release-toggle depth-pill">
                 <button 
                   className={`toggle-btn ${release === 'baseline' ? 'active' : ''}`}
@@ -561,8 +518,13 @@ export default function App() {
         {/* TAB 1: ASK ASSISTANT CHAT VIEW (CENTERED CLEAN LAYOUT) */}
         {activeTab === 'chat' && (
           <main className="workspace chat-workspace-centered">
-            {/* Centered Assistant Chatbox Terminal */}
-            <div className="central-chat-terminal card-pop-3d">
+            {/* Centered Assistant Chatbox Terminal (Individual 3D Element Effect) */}
+            <div 
+              className={`central-chat-terminal card-pop-3d ${is3DView ? 'element-3d-card' : ''}`}
+              style={is3DView ? {
+                transform: `perspective(1200px) rotateX(${(mouseTilt.x * 0.35).toFixed(2)}deg) rotateY(${(mouseTilt.y * 0.35).toFixed(2)}deg)`
+              } : {}}
+            >
               {/* Terminal Top Window Chrome */}
               <div className="terminal-top-bar">
                 <div className="terminal-left-group">
