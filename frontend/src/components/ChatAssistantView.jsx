@@ -52,7 +52,6 @@ export default function ChatAssistantView({
   asOfDate,
   release,
   is3DView,
-  mouseTilt,
   expandedCitations,
   toggleCitation,
   expandedTraces,
@@ -62,6 +61,7 @@ export default function ChatAssistantView({
   onOpenMap
 }) {
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -70,6 +70,20 @@ export default function ChatAssistantView({
   useEffect(() => {
     scrollToBottom();
   }, [messages, loading]);
+
+  const handleSubmit = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (question && question.trim() && !loading) {
+      onSend();
+    }
+  };
+
+  const handleSuggestedClick = (sq) => {
+    onSend(sq.q, sq.dept, sq.date);
+  };
 
   const renderStatusBadge = (decision) => {
     switch (decision?.toLowerCase()) {
@@ -104,12 +118,7 @@ export default function ChatAssistantView({
 
   return (
     <main className="workspace chat-workspace-centered">
-      <div 
-        className={`central-chat-terminal glass-panel-3d card-pop-3d ${is3DView ? 'element-3d-card' : ''}`}
-        style={is3DView ? {
-          transform: `perspective(1200px) rotateX(${(mouseTilt.x * 0.28).toFixed(2)}deg) rotateY(${(mouseTilt.y * 0.28).toFixed(2)}deg)`
-        } : {}}
-      >
+      <div className={`central-chat-terminal glass-panel-3d ${is3DView ? 'element-3d-card' : ''}`}>
         {/* Terminal Header Chrome */}
         <div className="terminal-top-bar">
           <div className="terminal-left-group">
@@ -178,6 +187,7 @@ export default function ChatAssistantView({
                         return (
                           <div key={cid} style={{ display: 'inline-block' }}>
                             <button 
+                              type="button"
                               className="citation-pill glow-hover"
                               onClick={() => toggleCitation(idx, cid)}
                               title="Click to view full passage text"
@@ -248,6 +258,7 @@ export default function ChatAssistantView({
 
                         <div style={{ marginTop: '0.5rem' }}>
                           <button 
+                            type="button"
                             onClick={() => toggleJsonRaw(idx)}
                             className="btn-tiny"
                           >
@@ -286,15 +297,16 @@ export default function ChatAssistantView({
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Suggested Question Cards (Show only when no interaction yet or scrollable) */}
+        {/* Suggested Question Cards */}
         <div className="suggested-questions-tray">
-          <span className="suggested-label">Suggested Questions:</span>
+          <span className="suggested-label">Suggested Questions (Click to Ask):</span>
           <div className="suggested-cards-scroller">
             {SUGGESTED_QUESTIONS.map((sq, i) => (
               <button 
                 key={i} 
-                className="suggested-card glass-panel-3d card-pop-3d"
-                onClick={() => onSend(sq.q, sq.dept, sq.date)}
+                type="button"
+                className="suggested-card glass-panel-3d"
+                onClick={() => handleSuggestedClick(sq)}
               >
                 <div className="s-card-top">
                   <span className="s-card-tag">{sq.tag}</span>
@@ -307,10 +319,14 @@ export default function ChatAssistantView({
           </div>
         </div>
 
-        {/* Modern Floating Input Dock */}
-        <div className="terminal-input-dock glass-panel-3d">
+        {/* Modern Interactive Form Input Dock */}
+        <form 
+          className="terminal-input-dock glass-panel-3d"
+          onSubmit={handleSubmit}
+        >
           <div className="dock-left-icons">
             <button 
+              type="button"
               className="dock-icon-btn" 
               title="View 3D Policy Universe Map" 
               onClick={onOpenMap}
@@ -319,23 +335,24 @@ export default function ChatAssistantView({
             </button>
           </div>
           <input 
+            ref={inputRef}
             type="text" 
             className="dock-input-field" 
             placeholder="Ask any policy question (e.g. learning leave days, meal reimbursement cap, remote work exceptions)..."
             value={question}
             onChange={e => setQuestion(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') onSend(); }}
             disabled={loading}
+            autoFocus
           />
           <button 
+            type="submit"
             className="dock-send-btn glow-gradient" 
-            onClick={() => onSend()}
             disabled={loading || !question.trim()}
             title="Ask Policy Assistant"
           >
             <Send size={15} />
           </button>
-        </div>
+        </form>
       </div>
     </main>
   );

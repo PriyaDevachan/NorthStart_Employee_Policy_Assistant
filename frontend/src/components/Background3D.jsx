@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 
-export default function Background3D({ is3DView = true, mouseTilt = { x: 0, y: 0 } }) {
+export default function Background3D({ is3DView = true }) {
   const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!is3DView) return;
@@ -16,6 +17,15 @@ export default function Background3D({ is3DView = true, mouseTilt = { x: 0, y: 0
     };
     handleResize();
     window.addEventListener('resize', handleResize);
+
+    const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      mouseRef.current = {
+        x: ((e.clientY / innerHeight) - 0.5) * -6,
+        y: ((e.clientX / innerWidth) - 0.5) * 6
+      };
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // Ambient floating 3D particle constellation
     const count = 45;
@@ -37,8 +47,8 @@ export default function Background3D({ is3DView = true, mouseTilt = { x: 0, y: 0
 
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
-      const offsetX = mouseTilt.y * 14;
-      const offsetY = mouseTilt.x * 14;
+      const offsetX = mouseRef.current.y * 14;
+      const offsetY = mouseRef.current.x * 14;
 
       // Soft ambient light gradients in background
       const grad1 = ctx.createRadialGradient(cx + offsetX * 1.5, cy * 0.3 + offsetY, 50, cx, cy * 0.3, 500);
@@ -88,17 +98,18 @@ export default function Background3D({ is3DView = true, mouseTilt = { x: 0, y: 0
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [is3DView, mouseTilt]);
+  }, [is3DView]);
 
   if (!is3DView) {
-    return <div className="static-bg-canvas" />;
+    return <div className="static-bg-canvas" style={{ pointerEvents: 'none' }} />;
   }
 
   return (
-    <div className="dynamic-3d-bg-container">
-      <canvas ref={canvasRef} className="interactive-3d-background-canvas" />
-      <div className="subtle-grid-overlay" />
+    <div className="dynamic-3d-bg-container" style={{ pointerEvents: 'none' }}>
+      <canvas ref={canvasRef} className="interactive-3d-background-canvas" style={{ pointerEvents: 'none' }} />
+      <div className="subtle-grid-overlay" style={{ pointerEvents: 'none' }} />
     </div>
   );
 }

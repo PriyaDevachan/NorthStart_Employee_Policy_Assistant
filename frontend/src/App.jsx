@@ -42,7 +42,6 @@ export default function App() {
   
   // 3D View & Spatial Interaction States
   const [is3DView, setIs3DView] = useState(true);
-  const [mouseTilt, setMouseTilt] = useState({ x: 0, y: 0 });
   const [show3DPipeline, setShow3DPipeline] = useState(false);
 
   useEffect(() => {
@@ -72,15 +71,6 @@ export default function App() {
     } catch (err) {
       console.error('Failed to fetch policies:', err);
     }
-  };
-
-  // 3D Mouse Parallax
-  const handleMouseMove = (e) => {
-    if (!is3DView) return;
-    const { innerWidth, innerHeight } = window;
-    const tiltY = ((e.clientX / innerWidth) - 0.5) * 6;
-    const tiltX = ((e.clientY / innerHeight) - 0.5) * -6;
-    setMouseTilt({ x: tiltX, y: tiltY });
   };
 
   const handleSend = async (customQuery = null, customDept = null, customDate = null) => {
@@ -163,12 +153,9 @@ export default function App() {
   const latestAssistantMsg = messages.filter(m => m.role === 'assistant').slice(-1)[0] || messages[0];
 
   return (
-    <div 
-      className={`app-container ${is3DView ? 'mode-3d' : 'mode-2d'}`}
-      onMouseMove={handleMouseMove}
-    >
+    <div className={`app-container ${is3DView ? 'mode-3d' : 'mode-2d'}`}>
       {/* Dynamic 3D Perspective Background */}
-      <Background3D is3DView={is3DView} mouseTilt={mouseTilt} />
+      <Background3D is3DView={is3DView} />
 
       <div className="spatial-canvas">
         {/* Navigation Header */}
@@ -261,7 +248,6 @@ export default function App() {
             asOfDate={asOfDate}
             release={release}
             is3DView={is3DView}
-            mouseTilt={mouseTilt}
             expandedCitations={expandedCitations}
             toggleCitation={toggleCitation}
             expandedTraces={expandedTraces}
