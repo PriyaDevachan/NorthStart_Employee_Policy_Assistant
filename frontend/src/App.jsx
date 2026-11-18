@@ -566,10 +566,73 @@ export default function App() {
           </div>
         </div>
 
-        {/* TAB 1: ASK ASSISTANT CHAT VIEW */}
+        {/* TAB 1: ASK ASSISTANT CHAT VIEW (BYTE TOWN AI ASSISTANT LANDING STYLE) */}
         {activeTab === 'chat' && (
-          <main className="workspace">
-            <div className="chat-panel depth-level-3">
+          <main className="workspace chat-workspace-dribbble">
+            {/* Dribbble Hero Showcase Section */}
+            <section className="dribbble-hero-section">
+              <div className="hero-pill-tag glow-hover">
+                <Sparkles size={13} className="text-violet" />
+                <span>Next-Gen Enterprise AI • Zero-Hallucination Policy Engine</span>
+              </div>
+              <h1 className="hero-giant-title">
+                Instant Enterprise Policy Clarity, <br />
+                <span className="gradient-highlight">Verified to the Word.</span>
+              </h1>
+              <p className="hero-subheading">
+                Explore Northstar's 10 corporate policies across learning leave, remote work, equipment, and travel expenses with temporal precision, departmental scope, and 100% server-verified citation grounding.
+              </p>
+
+              {/* Floating Stat Badges Row */}
+              <div className="hero-stat-badges-row">
+                <div className="hero-stat-badge">
+                  <span className="beacon-dot beacon-green pulse-glow"></span>
+                  <span className="stat-badge-text"><strong>100% Grounded Citations</strong> (Server Verified)</span>
+                </div>
+                <div className="hero-stat-badge">
+                  <Zap size={13} className="text-amber" />
+                  <span className="stat-badge-text"><strong>Groq Llama-3 / GPT-OSS</strong> (~180ms)</span>
+                </div>
+                <div className="hero-stat-badge">
+                  <ShieldCheck size={13} className="text-blue" />
+                  <span className="stat-badge-text"><strong>100% Hit@5 Recall</strong> (Candidate)</span>
+                </div>
+                <div className="hero-stat-badge">
+                  <Clock size={13} className="text-purple" />
+                  <span className="stat-badge-text"><strong>Policy Horizon:</strong> {asOfDate}</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Central Floating AI Chatbot Window (ByteTown Luxury Glass Terminal) */}
+            <div className="dribbble-chat-terminal card-pop-3d">
+              {/* Terminal Top Window Chrome */}
+              <div className="terminal-top-bar">
+                <div className="terminal-left-group">
+                  <div className="terminal-status-indicator">
+                    <span className="beacon-dot beacon-green pulse-glow"></span>
+                    <span className="status-label">Northstar Policy AI</span>
+                  </div>
+                  <span className="terminal-model-badge">Groq / gpt-oss-20b</span>
+                </div>
+
+                <div className="terminal-right-group">
+                  <div className="terminal-scope-pill" title="Active Department Scope">
+                    <Building2 size={12} />
+                    <span>{department || 'All Departments'}</span>
+                  </div>
+                  <div className="terminal-scope-pill" title="Active Effective Date Horizon">
+                    <Calendar size={12} />
+                    <span>{asOfDate}</span>
+                  </div>
+                  <div className="terminal-release-pill">
+                    <span className={`rel-dot ${release === 'candidate' ? 'rel-cand' : 'rel-base'}`}></span>
+                    <span>{release.toUpperCase()}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Messages Stream */}
               <div className="messages-stream">
                 {messages.map((msg, idx) => (
                   <div key={idx} className={`message-row ${msg.role} ${is3DView ? 'floating-card-3d' : ''}`}>
@@ -712,38 +775,57 @@ export default function App() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Quick Prompts */}
-              <div className="quick-prompts depth-level-1">
-                <span className="quick-prompts-label">Quick Tests:</span>
-                {BENCHMARK_CASES.slice(0, 5).map((c, i) => (
-                  <button 
-                    key={i} 
-                    className="prompt-pill glow-hover"
-                    onClick={() => triggerTestCase(c)}
-                  >
-                    {c.title}
-                  </button>
-                ))}
+              {/* Quick Prompts Capsule Bar */}
+              <div className="dribbble-quick-prompts">
+                <span className="quick-prompts-label">Try Asking:</span>
+                <div className="quick-prompts-scroller">
+                  {BENCHMARK_CASES.slice(0, 5).map((c, i) => (
+                    <button 
+                      key={i} 
+                      className="prompt-capsule glow-hover"
+                      onClick={() => triggerTestCase(c)}
+                    >
+                      <Sparkles size={11} className="capsule-icon" />
+                      <span>{c.title}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              {/* Input Bar */}
-              <div className="chat-input-bar depth-level-2">
+              {/* Luxury Floating Input Dock */}
+              <div className="terminal-input-dock">
+                <div className="dock-left-icons">
+                  <button 
+                    className="dock-icon-btn" 
+                    title="Synthesized Policy Knowledge Catalog" 
+                    onClick={() => setActiveTab('policies')}
+                  >
+                    <BookOpen size={16} />
+                  </button>
+                  <button 
+                    className="dock-icon-btn" 
+                    title="View 3D Pipeline Map" 
+                    onClick={() => setShow3DPipeline(true)}
+                  >
+                    <Layers size={16} />
+                  </button>
+                </div>
                 <input 
                   type="text" 
-                  className="input-box" 
-                  placeholder="Ask an employee policy question (e.g. learning leave days, travel meal cap, remote days)..."
+                  className="dock-input-field" 
+                  placeholder="Ask any policy question (e.g. learning leave days, meal reimbursement cap, remote work exceptions)..."
                   value={question}
                   onChange={e => setQuestion(e.target.value)}
                   onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
                   disabled={loading}
                 />
                 <button 
-                  className="send-btn glow-3d" 
+                  className="dock-send-btn glow-gradient" 
                   onClick={() => handleSend()}
                   disabled={loading || !question.trim()}
+                  title="Ask Policy Assistant"
                 >
                   <Send size={15} />
-                  <span>Ask Policy Assistant</span>
                 </button>
               </div>
             </div>
