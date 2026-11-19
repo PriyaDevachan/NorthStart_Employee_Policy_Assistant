@@ -325,8 +325,8 @@ export default function ChatAssistantView({
           </div>
         </div>
 
-        {/* Central Chat Terminal — Visual Centerpiece */}
-        <div className={`central-chat-terminal glass-panel-3d ${is3DView ? 'element-3d-card' : ''}`}>
+        {/* Central Chat Terminal — Visual Centerpiece with Rich Dark Blue Background */}
+        <div className={`central-chat-terminal ${is3DView ? 'element-3d-card' : ''}`}>
           {/* Terminal Header Chrome */}
           <div className="terminal-top-bar">
             <div className="terminal-left-group">
@@ -359,24 +359,24 @@ export default function ChatAssistantView({
 
           {/* Messages Stream */}
           <div className="messages-stream">
-            {/* Visual Centerpiece Hero Card (shown initially) */}
+            {/* Visual Centerpiece Hero Card (shown initially) with Rich Dark Blue Glass and Highlighted Writing */}
             {messages.length === 1 && messages[0].trace_id === 'init' && (
-              <div className="chat-centerpiece-welcome glass-panel-3d anim-entrance">
+              <div className="chat-centerpiece-welcome anim-entrance">
                 <div className="welcome-avatar-spot">
                   <AssistantAvatar3D is3DView={is3DView} loading={false} size={56} />
                 </div>
                 <h2 className="welcome-hero-title">Northstar Policy AI Center</h2>
                 <p className="welcome-hero-desc">
-                  Your verified digital guide to Northstar Services corporate policies. Get precise, instant answers on annual learning leave, hybrid/remote schedules, meal per diem expenses, equipment refresh, and security prerequisites.
+                  Your verified digital guide to Northstar Services corporate policies. Get precise, instant answers on <span className="highlight-pill hp-purple">Annual Learning Leave</span>, <span className="highlight-pill hp-amber">Hybrid & Remote Schedules</span>, <span className="highlight-pill hp-green">Meal Per Diem Claims</span>, <span className="highlight-pill hp-blue">Equipment Refresh</span>, and <span className="highlight-pill hp-rose">Security Prerequisites</span>.
                 </p>
                 <div className="welcome-badges-row">
-                  <span className="welcome-badge">
+                  <span className="welcome-badge badge-emerald-glow">
                     <ShieldCheck size={13} className="text-emerald" /> 100% Server-Verified Citations
                   </span>
-                  <span className="welcome-badge">
+                  <span className="welcome-badge badge-amber-glow">
                     <Zap size={13} className="text-amber" /> Groq High-Speed Inference
                   </span>
-                  <span className="welcome-badge">
+                  <span className="welcome-badge badge-indigo-glow">
                     <BookOpen size={13} className="text-indigo" /> 10 Active & Historical Policies
                   </span>
                 </div>
