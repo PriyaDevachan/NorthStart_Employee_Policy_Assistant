@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Send, Sparkles, Building2, Calendar, ShieldCheck, 
   ChevronDown, ChevronRight, Activity, BookOpen, AlertCircle,
@@ -7,67 +7,136 @@ import {
 } from 'lucide-react';
 import AssistantAvatar3D from './AssistantAvatar3D';
 
-const SAMPLE_QUESTIONS = [
-  {
-    id: "sample-1",
-    title: "Learning Leave 2026",
-    desc: "5 days annual allowance & 6-month tenure",
-    q: "I am a full-time employee with eight months of service. How many days of learning leave can I take in 2026?",
-    dept: "",
-    date: "2026-06-01",
-    tag: "Entitlement",
-    colorTheme: "theme-purple"
-  },
-  {
-    id: "sample-2",
-    title: "Travel Meal Cap",
-    desc: "CAD 35 per diem & alcohol exclusion",
-    q: "What is the meal reimbursement limit on approved business travel?",
-    dept: "",
-    date: "2026-04-15",
-    tag: "Finance",
-    colorTheme: "theme-green"
-  },
-  {
-    id: "sample-3",
-    title: "Laptop Replacement",
-    desc: "36-month cycle & IT failure proof",
-    q: "When am I eligible for a laptop replacement?",
-    dept: "",
-    date: "2026-04-15",
-    tag: "Hardware",
-    colorTheme: "theme-blue"
-  },
-  {
-    id: "sample-4",
-    title: "Support Ops Remote",
-    desc: "1 day/week exception effective March 1",
-    q: "I work in Support Operations. How many remote days can I take in April 2026?",
-    dept: "Support Operations",
-    date: "2026-04-15",
-    tag: "Exception",
-    colorTheme: "theme-amber"
-  },
-  {
-    id: "sample-5",
-    title: "Expense Receipt Deadline",
-    desc: "30 calendar days submission deadline",
-    q: "How many days do I have to submit meal receipts after business travel?",
-    dept: "",
-    date: "2026-04-15",
-    tag: "Compliance",
-    colorTheme: "theme-rose"
-  },
-  {
-    id: "sample-6",
-    title: "Security Training Rule",
-    desc: "Mandatory prerequisite for remote work",
-    q: "I am a new employee who has not completed security training. Am I allowed to work remotely?",
-    dept: "Engineering",
-    date: "2026-04-15",
-    tag: "Onboarding",
-    colorTheme: "theme-indigo"
-  }
+const QUESTION_SETS = [
+  // Set 1: Entitlement, Finance & Hardware
+  [
+    {
+      id: "sample-1",
+      title: "Learning Leave 2026",
+      desc: "5 days annual allowance & 6-month tenure",
+      q: "I am a full-time employee with eight months of service. How many days of learning leave can I take in 2026?",
+      dept: "",
+      date: "2026-06-01",
+      tag: "Entitlement",
+      colorTheme: "theme-purple"
+    },
+    {
+      id: "sample-2",
+      title: "Travel Meal Cap",
+      desc: "CAD 35 per diem & alcohol exclusion",
+      q: "What is the meal reimbursement limit on approved business travel?",
+      dept: "",
+      date: "2026-04-15",
+      tag: "Finance",
+      colorTheme: "theme-green"
+    },
+    {
+      id: "sample-3",
+      title: "Laptop Replacement",
+      desc: "36-month cycle & IT failure proof",
+      q: "When am I eligible for a laptop replacement?",
+      dept: "",
+      date: "2026-04-15",
+      tag: "Hardware",
+      colorTheme: "theme-blue"
+    },
+    {
+      id: "sample-4",
+      title: "Support Ops Remote",
+      desc: "1 day/week exception effective March 1",
+      q: "I work in Support Operations. How many remote days can I take in April 2026?",
+      dept: "Support Operations",
+      date: "2026-04-15",
+      tag: "Exception",
+      colorTheme: "theme-amber"
+    }
+  ],
+  // Set 2: Compliance, Onboarding & Security
+  [
+    {
+      id: "sample-5",
+      title: "Expense Receipt Deadline",
+      desc: "30 calendar days submission deadline",
+      q: "How many days do I have to submit meal receipts after business travel?",
+      dept: "",
+      date: "2026-04-15",
+      tag: "Compliance",
+      colorTheme: "theme-rose"
+    },
+    {
+      id: "sample-6",
+      title: "Security Training Rule",
+      desc: "Mandatory prerequisite for remote work",
+      q: "I am a new employee who has not completed security training. Am I allowed to work remotely?",
+      dept: "Engineering",
+      date: "2026-04-15",
+      tag: "Onboarding",
+      colorTheme: "theme-indigo"
+    },
+    {
+      id: "sample-7",
+      title: "Meal Alcohol Policy",
+      desc: "Strictly excluded from company claims",
+      q: "Can I expense alcoholic drinks during business travel dinners?",
+      dept: "Finance and Operations",
+      date: "2026-04-15",
+      tag: "Finance",
+      colorTheme: "theme-cyan"
+    },
+    {
+      id: "sample-8",
+      title: "Probation Remote Rules",
+      desc: "In-office requirements during first 90 days",
+      q: "Can probationary employees work remotely before completing 90 days?",
+      dept: "",
+      date: "2026-04-15",
+      tag: "People Ops",
+      colorTheme: "theme-emerald"
+    }
+  ],
+  // Set 3: Lifecycle, Rollover & Approvals
+  [
+    {
+      id: "sample-9",
+      title: "Hardware Refresh Cycle",
+      desc: "Standard 3-year IT hardware lifecycle",
+      q: "What is the standard cycle for replacing corporate laptops?",
+      dept: "Engineering",
+      date: "2026-04-15",
+      tag: "Hardware",
+      colorTheme: "theme-blue"
+    },
+    {
+      id: "sample-10",
+      title: "Travel Pre-Approval",
+      desc: "Manager signoff required prior to travel",
+      q: "Do I need manager pre-approval before booking business flights and hotels?",
+      dept: "Finance and Operations",
+      date: "2026-04-15",
+      tag: "Travel",
+      colorTheme: "theme-orange"
+    },
+    {
+      id: "sample-11",
+      title: "Leave Rollover Policy",
+      desc: "Unused days forfeit Dec 31 each year",
+      q: "Do unused learning leave days roll over into the next calendar year?",
+      dept: "",
+      date: "2026-04-15",
+      tag: "Entitlement",
+      colorTheme: "theme-purple"
+    },
+    {
+      id: "sample-12",
+      title: "Incident Reporting",
+      desc: "IT security notice within 24 hours",
+      q: "How quickly must a lost or stolen laptop be reported to IT security?",
+      dept: "Engineering",
+      date: "2026-04-15",
+      tag: "Security",
+      colorTheme: "theme-rose"
+    }
+  ]
 ];
 
 export default function ChatAssistantView({
@@ -91,6 +160,11 @@ export default function ChatAssistantView({
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Dynamic Fade Out & In State for Sample Questions
+  const [activeSetIndex, setActiveSetIndex] = useState(0);
+  const [fadeState, setFadeState] = useState('in'); // 'in' | 'out'
+  const [isHovered, setIsHovered] = useState(false);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -98,6 +172,30 @@ export default function ChatAssistantView({
   useEffect(() => {
     scrollToBottom();
   }, [messages, loading]);
+
+  // Transition helper: Fades out, updates set, then fades in
+  const transitionToSet = (newIndex) => {
+    if (fadeState === 'out') return;
+    setFadeState('out');
+    setTimeout(() => {
+      setActiveSetIndex(newIndex);
+      setFadeState('in');
+    }, 350);
+  };
+
+  const handleNextSet = () => {
+    const next = (activeSetIndex + 1) % QUESTION_SETS.length;
+    transitionToSet(next);
+  };
+
+  // Auto-cycle through question sets every 6.5s (pauses on hover)
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      handleNextSet();
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [isHovered, activeSetIndex, fadeState]);
 
   const handleSubmit = (e) => {
     if (e) {
@@ -112,6 +210,8 @@ export default function ChatAssistantView({
   const handleSuggestedClick = (sq) => {
     onSend(sq.q, sq.dept, sq.date);
   };
+
+  const currentQuestions = QUESTION_SETS[activeSetIndex] || QUESTION_SETS[0];
 
   const renderStatusBadge = (decision) => {
     switch (decision?.toLowerCase()) {
@@ -146,18 +246,45 @@ export default function ChatAssistantView({
 
   return (
     <main className="workspace chat-workspace-split">
-      {/* LEFT CORNER: Sample Questions aligned Top to Bottom with Different Colors */}
-      <aside className="sample-questions-left-column">
+      {/* LEFT CORNER: Sample Questions aligned Top to Bottom with Dynamic Fade Out & In Effect */}
+      <aside 
+        className="sample-questions-left-column"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="sample-questions-header">
           <div className="sq-title-wrap">
             <Sparkles size={14} className="text-indigo" />
-            <span>Sample Inquiries</span>
+            <span>Sample Questions</span>
           </div>
-          <span className="sq-badge">Click to Ask</span>
+
+          <div className="sq-controls-row">
+            {/* Interactive Dot Indicators with Fade Transition */}
+            <div className="sq-dots-indicator" title="Switch sample question sets">
+              {QUESTION_SETS.map((_, idx) => (
+                <span 
+                  key={idx}
+                  className={`sq-dot ${activeSetIndex === idx ? 'active' : ''}`}
+                  onClick={() => transitionToSet(idx)}
+                />
+              ))}
+            </div>
+
+            {/* Manual Cycle Button with Fade Out & In */}
+            <button 
+              type="button" 
+              className={`sq-cycle-btn ${fadeState === 'out' ? 'rotating' : ''}`}
+              onClick={handleNextSet}
+              title="Next Sample Questions (Fade Out & In)"
+            >
+              <RefreshCw size={11} />
+            </button>
+          </div>
         </div>
 
-        <div className="sample-questions-list">
-          {SAMPLE_QUESTIONS.map(sq => (
+        {/* Dynamic List with Fade Out & In Classes */}
+        <div className={`sample-questions-list fade-${fadeState}`}>
+          {currentQuestions.map(sq => (
             <button
               key={sq.id}
               type="button"

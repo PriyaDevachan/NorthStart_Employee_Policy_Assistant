@@ -1786,7 +1786,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.55rem 0.85rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(191, 219, 254, 0.75);
   border-radius: 12px;
@@ -1802,16 +1802,68 @@ body {
   color: #0f172a;
 }
 
-.sq-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #2563eb;
-  background: #eff6ff;
-  padding: 2px 7px;
-  border-radius: 9999px;
-  border: 1px solid #bfdbfe;
+.sq-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
+.sq-dots-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sq-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.sq-dot.active {
+  width: 14px;
+  border-radius: 9999px;
+  background: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+}
+
+.sq-cycle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  background: #ffffff;
+  color: #2563eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sq-cycle-btn:hover {
+  background: #eff6ff;
+  border-color: #60a5fa;
+  transform: rotate(90deg);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.15);
+}
+
+.sq-cycle-btn.rotating svg {
+  animation: sqSpin 0.5s ease;
+}
+
+@keyframes sqSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =====================================================================
+   Sample Questions Fade Out & In Dynamic Transitions
+   ===================================================================== */
 .sample-questions-list {
   flex: 1;
   overflow-y: auto;
@@ -1819,6 +1871,46 @@ body {
   flex-direction: column;
   gap: 0.65rem;
   padding-right: 4px;
+  position: relative;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade Out State */
+.sample-questions-list.fade-out {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  pointer-events: none;
+}
+
+/* Fade In State */
+.sample-questions-list.fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered entrance for each question card */
+.sample-questions-list.fade-in .sample-q-card:nth-child(1) {
+  animation: sqCardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.03s backwards;
+}
+.sample-questions-list.fade-in .sample-q-card:nth-child(2) {
+  animation: sqCardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.09s backwards;
+}
+.sample-questions-list.fade-in .sample-q-card:nth-child(3) {
+  animation: sqCardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s backwards;
+}
+.sample-questions-list.fade-in .sample-q-card:nth-child(4) {
+  animation: sqCardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.21s backwards;
+}
+
+@keyframes sqCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Sample Question Cards - Different Vibrant Themes */
@@ -1998,6 +2090,69 @@ body {
   border-color: #6366f1;
   transform: translateX(4px);
   box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Theme 7: Cyan (Meal Alcohol Policy) */
+.sample-q-card.theme-cyan {
+  background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+  border: 1px solid #67e8f9;
+}
+.sample-q-card.theme-cyan .sample-q-tag {
+  background: #cffafe;
+  color: #0e7490;
+}
+.sample-q-card.theme-cyan .sample-q-title {
+  color: #164e63;
+}
+.sample-q-card.theme-cyan .sample-q-desc {
+  color: #155e75;
+}
+.sample-q-card.theme-cyan:hover {
+  border-color: #06b6d4;
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.2);
+}
+
+/* Theme 8: Emerald (Probation Remote Rules) */
+.sample-q-card.theme-emerald {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid #6ee7b7;
+}
+.sample-q-card.theme-emerald .sample-q-tag {
+  background: #d1fae5;
+  color: #047857;
+}
+.sample-q-card.theme-emerald .sample-q-title {
+  color: #064e3b;
+}
+.sample-q-card.theme-emerald .sample-q-desc {
+  color: #065f46;
+}
+.sample-q-card.theme-emerald:hover {
+  border-color: #10b981;
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+}
+
+/* Theme 9: Orange (Travel Pre-Approval) */
+.sample-q-card.theme-orange {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid #fdba74;
+}
+.sample-q-card.theme-orange .sample-q-tag {
+  background: #ffedd5;
+  color: #c2410c;
+}
+.sample-q-card.theme-orange .sample-q-title {
+  color: #7c2d12;
+}
+.sample-q-card.theme-orange .sample-q-desc {
+  color: #9a3412;
+}
+.sample-q-card.theme-orange:hover {
+  border-color: #f97316;
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
 }
 
 /* Right / Center Chat Column — Visual Centerpiece */
